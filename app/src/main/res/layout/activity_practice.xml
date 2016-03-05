@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FrameLayout">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Practice"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:textSize="30dp"/>
+
+    <ScrollView
+        android:layout_width="350dp"
+        android:layout_height="382dp"
+        android:id="@+id/scrollView"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Order:"
+                    android:id="@+id/order_textView"
+                    android:layout_gravity="left|center_horizontal"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="8dp"
+                    android:textStyle="bold"
+                    android:textSize="22dp"
+                    android:textIsSelectable="false"
+                    android:layout_weight="0.09"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="Alphabetical English"
+                    android:id="@+id/ae_radioButton"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="28dp"
+                    android:checked="false"
+                    android:layout_weight="0.09"
+                    android:onClick="onClickAnyRadio"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="Alphabetical Russian"
+                    android:id="@+id/ar_radioButton"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="28dp"
+                    android:checked="false"
+                    android:onClick="onClickAnyRadio"
+                    android:layout_weight="0.09"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="Reverse Alphabetical English"
+                    android:id="@+id/rae_radioButton"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="28dp"
+                    android:checked="false"
+                    android:onClick="onClickAnyRadio"
+                    android:layout_weight="0.09"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="Reverse Alphabetical Russian"
+                    android:id="@+id/rar_radioButton"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="28dp"
+                    android:checked="false"
+                    android:onClick="onClickAnyRadio"
+                    android:layout_weight="0.09"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="Random Order"
+                    android:id="@+id/random_radioButton"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="12dp"
+                    android:checked="false"
+                    android:onClick="onClickAnyRadio"
+                    android:layout_weight="0.09"/>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:text="I Don't Care"
+                    android:id="@+id/idc_radioButton"
+                    android:checked="false"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginTop="12dp"
+                    android:onClick="onClickAnyRadio"
+                    android:layout_weight="0.09"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Options: "
+                android:id="@+id/options_textView"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="28dp"
+                android:textStyle="bold"
+                android:textSize="22dp"
+                android:layout_weight="0.09"/>
+
+            <EditText
+                android:layout_width="295dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:id="@+id/time_editText"
+                android:layout_weight="0.09"
+                android:hint="Timed Practice Session (minutes)"
+                android:inputType="numberDecimal"
+                android:enabled="true"
+                />
+
+            <EditText
+                android:layout_width="258dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="12dp"
+                android:ems="10"
+                android:id="@+id/now_editText"
+                android:layout_weight="0.09"
+                android:hint="Number of Words to Practice"
+                android:inputType="number"
+                />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:text="Keep Track of Words That I Miss"
+                android:id="@+id/tracking_checkBox"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="0.09"
+                android:onClick="onClickTracking"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="I'm all set"
+        android:id="@+id/imallset_button"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="10dp"
+        android:onClick="onClickImAllSet"/>
+
+</FrameLayout>

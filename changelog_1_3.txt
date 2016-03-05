@@ -1,0 +1,22 @@
+1.3 changelog:
+
+fixed loop around
+fixed crash if no chapter selected, added pop-up message
+optimized, minimized the app size, took out unused resources 
+fixed all chapters mode to cohere with the new algorithm
+deleted inefficient, non used debug messages, hopefully this isnt too bad
+fixed russian card from being un-clickable after being disabled and re-enabled
+optimized timer tick method to be more efficient
+removed an earlier needed permission that was added for the other algorithm to work, removed because it wasnt needed for the new algorithm as the new resources are located in res/raw instead of on the root of the SD card. THE APP NOW NEEDS NO PERMISSIONS. if you have to give my app permissions, tell me.
+
+
+working on overall efficiency, always and forever <3
+working on creating the custom file word adder, something_else_here will be that
+working on creating the game mode, I need suggestions, contact me if you have any
+working on adding the missed word tracking
+working on adding an end screen that will show which words you missed, need to practice, run again, startover, etc
+working on making the app suspend/pause better. soon the timer will pause, game will pause, etc etc
+working on more support files; this is tiring and will take some time. If you would like to help, contact me and I'll give you some credits/easter eggs (silly debug message or something, if that is your cup of tea) in the app.
+working on making the russian/english buttons not flip another card when re-enabled
+working on changing the sorting algorithm to either bucket sort (the fastest, theoretically anyways) or quicksort. this isnt on the top of the list though as the current sort algorithm works fine.
+working on making better icons that conform to general play store icon look, also higher resolution icons, and icons that are more modular in photoshop/gimp instead of just downscalings of eachother so that they look better.

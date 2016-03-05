@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="Choose your vocabulary:"
+		android:id="@+id/textView"
+		android:layout_gravity="top|center"
+		android:textSize="28dp"
+		android:textAlignment="center"
+		android:layout_marginTop="30dp" />
+
+	<ScrollView
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:id="@+id/scrollView"
+        android:layout_gravity="center" >
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="All Chapters - I am a master"
+                android:id="@+id/allchapters_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Random - I don't care"
+            android:id="@+id/random_checkBox"
+            android:layout_gravity="left|center_horizontal"
+            android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Custom List - Enter below"
+                android:id="@+id/custom_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp"
+				android:checked="false"/>
+
+			<EditText
+				android:layout_width="240dp"
+				android:layout_height="wrap_content"
+				android:id="@+id/englishCustom_editText"
+				android:layout_gravity="center_horizontal"
+				android:hint="English Custom File Name"
+				android:inputType="textNoSuggestions"
+				android:layout_marginLeft="5dp"/>
+
+			<EditText
+				android:layout_width="245dp"
+				android:layout_height="wrap_content"
+				android:id="@+id/russianCustom_editText"
+				android:layout_gravity="center_horizontal"
+				android:layout_marginBottom="15dp"
+				android:hint="Russian Custom File Name"
+				android:inputType="textNoSuggestions"
+				android:layout_marginLeft="5dp"/>
+
+			<CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 1 - The Basics"
+                android:id="@+id/c1_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 2 - Introduction"
+                android:id="@+id/c2_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 3 - Family Members"
+                android:id="@+id/c3_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 4 - Furniture"
+                android:id="@+id/c4_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 5 - Geography"
+                android:id="@+id/c5_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 6 - "
+                android:id="@+id/c6_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 7 - "
+                android:id="@+id/c7_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 8 - "
+                android:id="@+id/c8_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 9 - "
+                android:id="@+id/c9_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 10 - "
+                android:id="@+id/c10_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 11 - "
+                android:id="@+id/c11_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 12 - "
+                android:id="@+id/c12_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 13 - "
+                android:id="@+id/c13_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 14 - "
+                android:id="@+id/c14_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 15 - "
+                android:id="@+id/c15_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:text="Chapter 16 - "
+                android:id="@+id/c16_checkBox"
+                android:layout_gravity="left|center_horizontal"
+                android:layout_marginLeft="40dp" />
+        </LinearLayout>
+    </ScrollView>
+
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="I'm Ready"
+		android:id="@+id/imready_button"
+		android:layout_gravity="center_horizontal|bottom"
+		android:layout_marginBottom="25dp"
+		android:onClick="onClickImReady" />
+
+</FrameLayout>

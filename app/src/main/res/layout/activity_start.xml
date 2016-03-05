@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Welcome"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textSize="50dp"
+        android:layout_marginTop="45dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Practice"
+        android:id="@+id/practice_button"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="25dp"
+        android:singleLine="false"
+        android:onClick="onClickPractice" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Game"
+        android:id="@+id/game_button"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:onClick="onClickGame"
+		android:layout_marginBottom="25dp"/>
+
+	<Button
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Add Custom Vocabulary"
+		android:id="@+id/custom_button"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="25dp"
+		android:onClick="onClickAddCustomWords" />
+
+</LinearLayout>

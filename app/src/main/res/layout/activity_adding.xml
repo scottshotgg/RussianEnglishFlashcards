@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+	android:orientation="vertical"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:weightSum="1">
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="Add Custom Words"
+		android:id="@+id/textView"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="30dp"
+		android:textSize="28dp"/>
+
+	<EditText
+		android:layout_width="225dp"
+		android:layout_height="40dp"
+		android:id="@+id/english_editText"
+		android:layout_gravity="center_horizontal"
+		android:hint="English Custom Word"
+		android:importantForAccessibility="4"
+		android:layout_marginTop="150dp"
+		android:textAlignment="center"
+		android:gravity="center_horizontal"/>
+
+	<EditText
+		android:layout_width="225dp"
+		android:layout_height="40dp"
+		android:id="@+id/russian_editText"
+		android:layout_gravity="center_horizontal"
+		android:layout_marginTop="20dp"
+		android:hint="Russian Custom Word"
+		android:gravity="center_horizontal"
+		android:textAlignment="center"
+		android:layout_marginBottom="60dp"
+		android:clickable="false"/>
+
+	<GridLayout
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		>
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="How To"
+			android:id="@+id/howTo_button"
+			android:width="120dp"
+			android:onClick="onClickHowTo"
+			android:layout_row="3"
+			android:layout_column="2"
+			android:layout_marginBottom="50dp"
+			android:layout_marginLeft="50dp"
+			android:layout_gravity="top"/>
+
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Add Word"
+			android:id="@+id/add_button"
+			android:width="120dp"
+			android:onClick="onClickAddWord"
+			android:layout_row="3"
+			android:layout_column="4"
+			android:layout_marginRight="50dp"/>
+
+	</GridLayout>
+
+</LinearLayout>

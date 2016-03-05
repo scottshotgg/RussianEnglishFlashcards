@@ -1,0 +1,104 @@
+<FrameLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:longClickable="true"
+    android:measureAllChildren="true">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="English"
+        android:id="@+id/english_button"
+        android:layout_gravity="left|top"
+        android:layout_marginLeft="30dp"
+        android:onClick="onClickEnglishButton"
+        android:layout_marginTop="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Russian"
+        android:id="@+id/russian_button"
+        android:layout_gravity="right|top"
+        android:layout_marginRight="30dp"
+        android:onClick="onClickRussianButton"
+        android:layout_marginTop="10dp" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="330dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="70dp"
+        android:clickable="true"
+        android:id="@+id/englishLLayout"
+        android:onClick="ifCardClicked">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="English"
+            android:id="@+id/english_textView_label"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Hello -            Press here"
+            android:id="@+id/english_textView"
+            android:layout_gravity="center_horizontal"
+            android:textSize="38dp"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:gravity="center_vertical|center_horizontal"
+            android:onClick="ifCardClicked"
+			android:focusable="false"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="330dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:clickable="true"
+        android:onClick="ifCardClicked"
+        android:id="@+id/russianLLayout" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Russian"
+            android:id="@+id/russian_textView_label"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Привет -  Нажмите здесь"
+            android:id="@+id/russian_textView"
+            android:layout_gravity="center_horizontal"
+            android:textSize="38dp"
+            android:layout_marginTop="15dp"
+            android:textAlignment="center"
+            android:gravity="center_vertical|center_horizontal"
+            android:onClick="ifCardClicked"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="297dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_gravity="center_horizontal|bottom" />
+
+</FrameLayout>

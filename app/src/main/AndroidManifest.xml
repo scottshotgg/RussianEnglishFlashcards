@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ScCode.RussianEnglishFlashcard" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/russian_english_flashcards"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".StartActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.ScCode.RussianEnglishFlashcard.ChapterActivity" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MyActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".ChapterActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+        </activity>
+        <activity
+            android:name=".PracticeActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan|stateHidden" >
+        </activity>
+        <activity
+            android:name=".GameActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".EndActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".CustomActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".AddingCustomActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+    </application>
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+</manifest>
