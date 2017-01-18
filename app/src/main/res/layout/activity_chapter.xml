@@ -198,7 +198,16 @@
                 android:id="@+id/c16_checkBox"
                 android:layout_gravity="left|center_horizontal"
                 android:layout_marginLeft="40dp" />
-        </LinearLayout>
+
+			<CheckBox
+				android:layout_width="wrap_content"
+				android:layout_height="50dp"
+				android:text="500 Most Used Verbs"
+				android:id="@+id/words500_checkBox"
+				android:layout_gravity="left|center_horizontal"
+				android:layout_marginLeft="40dp" />
+
+		</LinearLayout>
     </ScrollView>
 
 	<Button

@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static android.R.id.checkbox;
+
 public class ChapterActivity extends Activity
 {
 	ArrayList<Integer> chaptersArrayList = new ArrayList<Integer>();
@@ -40,7 +42,8 @@ public class ChapterActivity extends Activity
     CheckBox c13_checkbox;
     CheckBox c14_checkbox;
     CheckBox c15_checkbox;
-    CheckBox c16_checkbox;
+	CheckBox c16_checkbox;
+	CheckBox words500_checkbox;
 	EditText englishCustom_editText;
 	EditText russianCustom_editText;
 
@@ -87,6 +90,7 @@ public class ChapterActivity extends Activity
         c14_checkbox = (CheckBox)findViewById(R.id.c14_checkBox);
         c15_checkbox = (CheckBox)findViewById(R.id.c15_checkBox);
         c16_checkbox = (CheckBox)findViewById(R.id.c16_checkBox);
+		words500_checkbox = (CheckBox)findViewById(R.id.words500_checkBox);
 		englishCustom_editText = (EditText)findViewById(R.id.englishCustom_editText);
 		russianCustom_editText = (EditText)findViewById(R.id.russianCustom_editText);
 
@@ -120,6 +124,7 @@ public class ChapterActivity extends Activity
 		c14_checkbox.setChecked(false);
 		c15_checkbox.setChecked(false);
 		c16_checkbox.setChecked(false);
+		words500_checkbox.setChecked(false);
 
 		if (!toastShown)
 		{
@@ -281,10 +286,15 @@ public class ChapterActivity extends Activity
         {
 			chaptersArrayList.add(15);
         }
-        if(c16_checkbox.isChecked())
-        {
+		if(c16_checkbox.isChecked())
+		{
 			chaptersArrayList.add(16);
-        }
+		}
+		if(words500_checkbox.isChecked())
+		{
+			// Can't do this right now because the array does not go that far
+			//chaptersArrayList.add(17);
+		}
 
 
 		if(chaptersArrayList.size() != 0 && proceed == true)

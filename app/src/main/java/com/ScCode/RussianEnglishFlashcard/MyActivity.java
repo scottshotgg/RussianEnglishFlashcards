@@ -1,6 +1,7 @@
 package com.ScCode.RussianEnglishFlashcard;
 
 import android.app.Activity;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -332,6 +333,12 @@ public class MyActivity extends Activity
 		english_textView = (TextView) findViewById(R.id.english_textView);
 		russian_textView = (TextView) findViewById(R.id.russian_textView);
 		boolean multipleCustomFiles = false;
+
+
+
+		callThisFunctionDummy();
+
+
 
         for (Integer chapter: chapterArrayList)
         {
@@ -687,6 +694,14 @@ public class MyActivity extends Activity
 		// Make this depend on runAgain or something
 		//return 1;
 		// Not sure what this is for anymore, maybe it can be deprectaed.
+	}
+
+
+	public void callThisFunctionDummy() {
+		DB db = new DB(this);
+		Cursor res = db.printShit();
+		//Toast.makeText(getApplicationContext(), res.getColumnCount(), Toast.LENGTH_LONG).show();
+		System.out.println("the res thing:" + res.getCount());
 	}
 
 	public void processMultipleCustomFiles()
