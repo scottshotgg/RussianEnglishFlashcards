@@ -49,7 +49,6 @@ public class DB extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // TODO Auto-generated method stub
         //db.execSQL("DROP TABLE IF EXISTS contacts");
         //onCreate(db);
 
@@ -66,6 +65,7 @@ public class DB extends SQLiteOpenHelper {
     }
 
     public void createDatabase() {
+        // TODO find why this shit is making several successful calls and printouts
         SQLiteDatabase checkdb = null;
 
         try {

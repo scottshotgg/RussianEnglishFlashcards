@@ -701,6 +701,8 @@ public class MyActivity extends Activity
 		DB db = new DB(this);
 		Cursor res = db.printShit();
 		//Toast.makeText(getApplicationContext(), res.getColumnCount(), Toast.LENGTH_LONG).show();
+
+		// TODO make this where the cards are now and make a python script that will convert the existing text files into a database with multiple tables
 		System.out.println("the res thing:" + res.getCount());
 	}
 
