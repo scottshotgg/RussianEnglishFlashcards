@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import static java.sql.DriverManager.println;
+
 
 public class MyActivity extends Activity
 {
@@ -50,6 +52,7 @@ public class MyActivity extends Activity
 	String englishCustomFiles[];
 	String russianCustomFiles[];
 	int length = 0;
+	DB db = null;
 
 	ArrayList<Integer> chaptersArrayList = new ArrayList<Integer>();
 
@@ -92,6 +95,9 @@ public class MyActivity extends Activity
 				length = 1;
 			}
 		}
+
+		db = new DB(this);
+		db.createDatabase();
 
         makeLanguageArrays(null, chaptersArrayList);
 
@@ -226,7 +232,7 @@ public class MyActivity extends Activity
 
 			hasRussianPressed = false;
 
-
+			// TODO: Find another way to show the cards
 			// Make this not send another card but show the current one
 			ifCardClicked(null);
 		}
@@ -339,7 +345,10 @@ public class MyActivity extends Activity
 		//callThisFunctionDummy();
 
 		for (Integer chapter: chapterArrayList) {
+			ArrayList[] arrays = db.getChapter(chapter);
 
+			ec_list.addAll(arrays[0]);
+			rc_list.addAll(arrays[1]);
 		}
 
 
@@ -597,9 +606,8 @@ public class MyActivity extends Activity
 				case 500:
 					// add all the words using a cursor here
 					multipleCustomFiles = true;
-					DB db = new DB(this);
 
-					ArrayList[] arrays = db.grabWords(500);
+					ArrayList[] arrays = db.getVerbs(500);
 					System.out.println(arrays[0]);
 					System.out.println(arrays[1]);
 
@@ -608,12 +616,14 @@ public class MyActivity extends Activity
 
 					break;
 				default:
-					Toast.makeText(getApplicationContext(), "Somethin' dun borkd, yo!", Toast.LENGTH_LONG);
+					//Toast.makeText(getApplicationContext(), "Somethin' dun borkd, yo!", Toast.LENGTH_LONG).show();
 					//onBackPressed();
 					// TODO Fix this ghetto rigged shit later
 					System.out.println("this will pop up a few times for now");
 			}
 			System.out.println("chapter: " + chapter);
+			// TODO: What does this even do? Fix this hack shit later
+			multipleCustomFiles = true;
 			if(!multipleCustomFiles)
 			{
 				try

@@ -46,8 +46,10 @@ public class DB extends SQLiteOpenHelper {
                // + "AUTOINCREMENT, name TEXT NOT NULL, ext TEXT NOT NULL, "
               //  + "mob TEXT NOT NULL, age INTEGER NOT NULL DEFAULT '0')");
         //SQLiteDatabase checkdb = null;
-
-        createDatabase();
+		//context.deleteDatabase(DB_NAME);
+        //createDatabase();
+		//db.close();
+        //copyDatabaseFromAssets();
     }
 
     @Override
@@ -70,12 +72,9 @@ public class DB extends SQLiteOpenHelper {
 			//File dFile = context.getDatabasePath(myPath);
 			//System.out.println(dFile);
 
-            //checkdb = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-            //System.out.println(checkdb);
-			File dbFile = context.getDatabasePath(myPath);
-
-			System.out.println("dbfile: " + dbFile.exists());
-            //checkdb.close();
+            checkdb = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+            System.out.println(checkdb);
+			//db.close();
 
         } catch(SQLiteException e) {
 
@@ -87,6 +86,7 @@ public class DB extends SQLiteOpenHelper {
 
 		print("here we are");
         //db = this.getReadableDatabase();
+		//db.close();
 		print("did we get this far");
     }
 
@@ -96,6 +96,8 @@ public class DB extends SQLiteOpenHelper {
         try {
             //Open your local db as the input stream
             InputStream myInput = context.getAssets().open(DB_NAME);
+
+			System.out.println(myInput);
 
             // Path to the just created empty db
             String outFileName = DB_PATH + DB_NAME;
@@ -123,15 +125,43 @@ public class DB extends SQLiteOpenHelper {
         print("done copying");
     }
 
-    public ArrayList[] grabWords(int amount) {
+	public ArrayList[] getChapter(int chapter) {
+		db = this.getReadableDatabase();
+
+		ArrayList<String> english = new ArrayList<String>();
+		ArrayList<String> russian = new ArrayList<String>();
+
+		Cursor res = db.rawQuery("select * from main where chapter = ?", new String[]{Integer.toString(chapter)});
+
+		res.moveToFirst();
+
+		for(int count = 0; count < res.getCount(); count++) {
+			String eng = res.getString(1);
+			String rus = res.getString(2);
+
+			//print("English: " + eng);
+			//print("Russian: " + rus);
+
+			english.add(eng);
+			russian.add(rus);
+
+			res.moveToNext();
+		}
+
+		return new ArrayList[] {english, russian};
+	}
+
+    public ArrayList[] getVerbs(int amount) {
         if (amount != 500) {
             // TODO make less that 500 and random stuff
             //random some numbers and pull those from the database, we can also make a thing that saves the days and the verbs studied and pick different ones
         }
+		System.out.println("can we read this");
 		db = this.getReadableDatabase();
+		System.out.println("can you see this");
 
 		System.out.println("db: " + db);
-        Cursor res =  db.rawQuery("select * from main", null);
+        Cursor res =  db.rawQuery("select * from verbs", null);
 
         ArrayList<String> english = new ArrayList<String>();
         ArrayList<String> russian = new ArrayList<String>();
