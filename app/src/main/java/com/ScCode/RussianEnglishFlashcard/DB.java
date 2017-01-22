@@ -25,7 +25,7 @@ public class DB extends SQLiteOpenHelper {
     final static int DB_VERSION = 1;
     //final static String DB_NAME = "/res/raw/mydb.s3db";
     private static String DB_PATH = "/data/data/com.ScCode.RussianEnglishFlashcard/databases/";
-    final static String DB_NAME = "words_500.db";
+    final static String DB_NAME = "words.db";
     Context context;
     SQLiteDatabase db;
 
@@ -57,16 +57,6 @@ public class DB extends SQLiteOpenHelper {
 
     }
 
-    public Cursor printShit() {
-        System.out.println("we are in the printshit function");
-        createDatabase();
-
-        //db = this.getReadableDatabase();
-
-        Cursor res =  db.rawQuery("select * from main", null);
-        return res;
-    }
-
     public void createDatabase() {
         // TODO find why this shit is making several successful calls and printouts
         SQLiteDatabase checkdb = null;
@@ -75,12 +65,19 @@ public class DB extends SQLiteOpenHelper {
             print("trying to open db");
             String myPath = DB_PATH + DB_NAME;
             print(myPath);
-            checkdb = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-            System.out.println(checkdb);
-            checkdb.close();
+			//File dbFile = context.getDatabasePath(DB_NAME);
+			//System.out.println(dbFile);
+			//File dFile = context.getDatabasePath(myPath);
+			//System.out.println(dFile);
 
-        }
-        catch(SQLiteException e) {
+            //checkdb = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+            //System.out.println(checkdb);
+			File dbFile = context.getDatabasePath(myPath);
+
+			System.out.println("dbfile: " + dbFile.exists());
+            //checkdb.close();
+
+        } catch(SQLiteException e) {
 
             //database does't exist yet.
             print("database doesn't exist yet");
@@ -88,9 +85,12 @@ public class DB extends SQLiteOpenHelper {
             copyDatabaseFromAssets();
         }
 
-        db = this.getReadableDatabase();
+		print("here we are");
+        //db = this.getReadableDatabase();
+		print("did we get this far");
     }
 
+	// TODO: For some reason this shit is not working anymore
     public void copyDatabaseFromAssets() {
         print("copyDatabaseFromAssets");
         try {
@@ -112,7 +112,7 @@ public class DB extends SQLiteOpenHelper {
             }
 
             //Close the streams
-            myOutput.flush();
+			myOutput.flush();
             myOutput.close();
             myInput.close();
         }

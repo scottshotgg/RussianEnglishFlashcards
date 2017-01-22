@@ -26,6 +26,7 @@ public class ChapterActivity extends Activity
 {
 	ArrayList<Integer> chaptersArrayList = new ArrayList<Integer>();
 
+	// TODO Use an oncick for these things so that we don't have to do any processing for them
     CheckBox allchapters_checkbox;
     CheckBox random_checkbox;
     CheckBox custom_checkbox;

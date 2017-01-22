@@ -338,6 +338,9 @@ public class MyActivity extends Activity
 		// current DB tester function
 		//callThisFunctionDummy();
 
+		for (Integer chapter: chapterArrayList) {
+
+		}
 
 
         for (Integer chapter: chapterArrayList)
@@ -350,6 +353,7 @@ public class MyActivity extends Activity
 						chapter = 0;
 						try
 						{
+							// TODO Change this to DB format
 							russian_reader = new BufferedReader(new FileReader(new File(russianFileName)));
 							english_reader = new BufferedReader(new FileReader(new File(englishFileName)));
 						}
@@ -402,6 +406,7 @@ public class MyActivity extends Activity
 						{
 							if(chapterArrayList.get(0) == 0)
 							{
+								// TODO This shit too
 								File eFile = new File(englishFileName);
 								File rFile = new File(russianFileName);
 
@@ -441,6 +446,8 @@ public class MyActivity extends Activity
 
 					break;
 
+				// Changing all of this stuff to the new DB format
+				/*
 				case 1:
 					russian_InputStream = getResources().openRawResource(R.raw.rc1);
 					russian_reader = new BufferedReader(new InputStreamReader(russian_InputStream));
@@ -485,6 +492,7 @@ public class MyActivity extends Activity
 					english_reader = new BufferedReader(new InputStreamReader(english_InputStream));
 
 					break;
+				/*
 				/*
 				case 6:
 					russian_InputStream = getResources().openRawResource(R.raw.rc6);
@@ -601,7 +609,9 @@ public class MyActivity extends Activity
 					break;
 				default:
 					Toast.makeText(getApplicationContext(), "Somethin' dun borkd, yo!", Toast.LENGTH_LONG);
-					onBackPressed();
+					//onBackPressed();
+					// TODO Fix this ghetto rigged shit later
+					System.out.println("this will pop up a few times for now");
 			}
 			System.out.println("chapter: " + chapter);
 			if(!multipleCustomFiles)
@@ -710,14 +720,6 @@ public class MyActivity extends Activity
 		// Not sure what this is for anymore, maybe it can be deprectaed.
 	}
 
-
-	public void callThisFunctionDummy() {
-		DB db = new DB(this);
-		Cursor res = db.printShit();
-		//Toast.makeText(getApplicationContext(), res.getColumnCount(), Toast.LENGTH_LONG).show();
-
-		System.out.println("the res thing:" + res.getCount());
-	}
 
 	public void processMultipleCustomFiles()
 	{
