@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import static android.R.attr.id;
 
@@ -25,6 +27,7 @@ public class DB extends SQLiteOpenHelper {
     private static String DB_PATH = "/data/data/com.ScCode.RussianEnglishFlashcard/databases/";
     final static String DB_NAME = "words_500.db";
     Context context;
+    SQLiteDatabase db;
 
     public void print(String shit) {
         System.out.println(shit);
@@ -58,7 +61,7 @@ public class DB extends SQLiteOpenHelper {
         System.out.println("we are in the printshit function");
         createDatabase();
 
-        SQLiteDatabase db = this.getReadableDatabase();
+        //db = this.getReadableDatabase();
 
         Cursor res =  db.rawQuery("select * from main", null);
         return res;
@@ -84,6 +87,8 @@ public class DB extends SQLiteOpenHelper {
 
             copyDatabaseFromAssets();
         }
+
+        db = this.getReadableDatabase();
     }
 
     public void copyDatabaseFromAssets() {
@@ -116,5 +121,37 @@ public class DB extends SQLiteOpenHelper {
         }
 
         print("done copying");
+    }
+
+    public ArrayList[] grabWords(int amount) {
+        if (amount != 500) {
+            // TODO make less that 500 and random stuff
+            //random some numbers and pull those from the database, we can also make a thing that saves the days and the verbs studied and pick different ones
+        }
+		db = this.getReadableDatabase();
+
+		System.out.println("db: " + db);
+        Cursor res =  db.rawQuery("select * from main", null);
+
+        ArrayList<String> english = new ArrayList<String>();
+        ArrayList<String> russian = new ArrayList<String>();
+
+        // Move to the first cursor value; will crash if you don't do this
+        res.moveToFirst();
+
+        for(int i = 0; i < amount; i++) {
+            String eng = res.getString(1);
+            String rus = res.getString(2);
+
+			//print("English: " + eng);
+			//print("Russian: " + rus);
+
+            english.add(eng);
+            russian.add(rus);
+
+			res.moveToNext();
+        }
+
+		return new ArrayList[] {english, russian};
     }
 }

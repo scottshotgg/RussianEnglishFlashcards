@@ -335,8 +335,8 @@ public class MyActivity extends Activity
 		boolean multipleCustomFiles = false;
 
 
-
-		callThisFunctionDummy();
+		// current DB tester function
+		//callThisFunctionDummy();
 
 
 
@@ -585,6 +585,20 @@ public class MyActivity extends Activity
 
 					break;
 				*/
+
+				case 500:
+					// add all the words using a cursor here
+					multipleCustomFiles = true;
+					DB db = new DB(this);
+
+					ArrayList[] arrays = db.grabWords(500);
+					System.out.println(arrays[0]);
+					System.out.println(arrays[1]);
+
+					ec_list.addAll(arrays[0]);
+					rc_list.addAll(arrays[1]);
+
+					break;
 				default:
 					Toast.makeText(getApplicationContext(), "Somethin' dun borkd, yo!", Toast.LENGTH_LONG);
 					onBackPressed();

@@ -294,6 +294,7 @@ public class ChapterActivity extends Activity
 		}
 		if(words500_checkbox.isChecked())
 		{
+			chaptersArrayList.add(500);
 			// Can't do this right now because the array does not go that far
 			//chaptersArrayList.add(17);
 		}
