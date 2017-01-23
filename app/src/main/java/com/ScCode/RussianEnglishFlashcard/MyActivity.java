@@ -20,8 +20,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
+import java.util.Map;
 import java.util.Random;
+import java.util.TreeMap;
 
 
 public class MyActivity extends Activity
@@ -51,10 +53,26 @@ public class MyActivity extends Activity
 	int length = 0;
 	DB db = null;
 
+	// Compare by key
+	Comparator<String> keyCompare = new Comparator<String>() {
+		@Override
+		public int compare(String o1, String o2) {
+			return o1.toLowerCase().compareTo(o2.toLowerCase());
+		}
+	};
+
+	TreeMap<String, String> englishWordsMap = new TreeMap<String, String>(keyCompare);
+	TreeMap<String, String> russianWordsMap = new TreeMap<String, String>(keyCompare);
+
+	TreeMap<String, String> wordsMap = new TreeMap<String, String>();
+
+
 	ArrayList<Integer> chaptersArrayList = new ArrayList<Integer>();
 
     ArrayList<String> rc_list = new ArrayList<String>();
     ArrayList<String> ec_list = new ArrayList<String>();
+
+	Object[] keys;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -247,83 +265,92 @@ public class MyActivity extends Activity
 
     public void ifCardClicked(View view)
     {
-		int size = ec_list.size();
-		int scaledSize = size - 1;
+//		int size = ec_list.size();
+//		int scaledSize = size - 1;
+//
+//		if(hasCountedDown == true)
+//		{
+//			english_textView.setClickable(false);
+//			russian_textView.setClickable(false);
+//			english_textView.setFocusable(false);
+//			russian_textView.setFocusable(false);
+//		}
+//		else
+//		{
+//			// combine these next things
+//			if(buttonId == 1 || buttonId == 2)
+//			{
+//				if(hasEnglishPressed == false)
+//				{
+//					english_textView = (TextView) findViewById(R.id.english_textView);
+//					english_textView.setText(ec_list.get(cardClickedCount));
+//				}
+//
+//				if(hasRussianPressed == false)
+//				{
+//					russian_textView = (TextView) findViewById(R.id.russian_textView);
+//					russian_textView.setText(rc_list.get(cardClickedCount));
+//				}
+//			}
+//			else if(buttonId == 3 || buttonId == 4)
+//			{
+//				if(hasEnglishPressed == false)
+//				{
+//					english_textView = (TextView) findViewById(R.id.english_textView);
+//					english_textView.setText(ec_list.get(scaledSize - cardClickedCount));
+//				}
+//
+//				if(hasRussianPressed == false)
+//				{
+//					russian_textView = (TextView) findViewById(R.id.russian_textView);
+//					russian_textView.setText(rc_list.get(scaledSize - cardClickedCount));
+//				}
+//			}
+//			else if(buttonId == 5)
+//			{
+//				randNum = rand.nextInt(chaptersAmount) + 1;
+//
+//				if(hasEnglishPressed == false)
+//				{
+//					english_textView = (TextView) findViewById(R.id.english_textView);
+//					english_textView.setText(ec_list.get(randNum - 1));
+//				}
+//
+//				if(hasRussianPressed == false)
+//				{
+//					russian_textView = (TextView) findViewById(R.id.russian_textView);
+//					russian_textView.setText(rc_list.get(randNum - 1));
+//				}
+//			}
+//
+//			cardClickedCount++;
+//
+//			if(cardClickedCount == size)
+//			{
+//				cardClickedCount = 0;
+//			}
+//
+//			if (words != 0)
+//			{
+//				wordsCount++;
+//				if (wordsCount == words)
+//				{
+//					onBackPressed();
+//					// This is temporary, need to make something better that
+//					// takes into account tracking and kicks out to another screen.
+//					// kick out to end_Activity
+//				}
+//			}
+//		}
 
-		if(hasCountedDown == true)
-		{
-			english_textView.setClickable(false);
-			russian_textView.setClickable(false);
-			english_textView.setFocusable(false);
-			russian_textView.setFocusable(false);
-		}
-		else
-		{
-			// combine these next things
-			if(buttonId == 1 || buttonId == 2)
-			{
-				if(hasEnglishPressed == false)
-				{
-					english_textView = (TextView) findViewById(R.id.english_textView);
-					english_textView.setText(ec_list.get(cardClickedCount));
-				}
+		english_textView = (TextView) findViewById(R.id.english_textView);
+		english_textView.setText(keys[cardClickedCount].toString());
 
-				if(hasRussianPressed == false)
-				{
-					russian_textView = (TextView) findViewById(R.id.russian_textView);
-					russian_textView.setText(rc_list.get(cardClickedCount));
-				}
-			}
-			else if(buttonId == 3 || buttonId == 4)
-			{
-				if(hasEnglishPressed == false)
-				{
-					english_textView = (TextView) findViewById(R.id.english_textView);
-					english_textView.setText(ec_list.get(scaledSize - cardClickedCount));
-				}
+		russian_textView = (TextView) findViewById(R.id.russian_textView);
+		russian_textView.setText(wordsMap.get(keys[cardClickedCount]));
 
-				if(hasRussianPressed == false)
-				{
-					russian_textView = (TextView) findViewById(R.id.russian_textView);
-					russian_textView.setText(rc_list.get(scaledSize - cardClickedCount));
-				}
-			}
-			else if(buttonId == 5)
-			{
-				randNum = rand.nextInt(chaptersAmount) + 1;
+		cardClickedCount++;
 
-				if(hasEnglishPressed == false)
-				{
-					english_textView = (TextView) findViewById(R.id.english_textView);
-					english_textView.setText(ec_list.get(randNum - 1));
-				}
-
-				if(hasRussianPressed == false)
-				{
-					russian_textView = (TextView) findViewById(R.id.russian_textView);
-					russian_textView.setText(rc_list.get(randNum - 1));
-				}
-			}
-
-			cardClickedCount++;
-
-			if(cardClickedCount == size)
-			{
-				cardClickedCount = 0;
-			}
-
-			if (words != 0)
-			{
-				wordsCount++;
-				if (wordsCount == words)
-				{
-					onBackPressed();
-					// This is temporary, need to make something better that
-					// takes into account tracking and kicks out to another screen.
-					// kick out to end_Activity
-				}
-			}
-		}
     }
 
     public void makeLanguageArrays(View view, ArrayList<Integer> chapterArrayList)
@@ -347,6 +374,13 @@ public class MyActivity extends Activity
 
 			ec_list.addAll(arrays[0]);
 			rc_list.addAll(arrays[1]);
+
+			for (int i = 0; i < arrays[0].size(); i++) {
+				englishWordsMap.put(arrays[0].get(i).toString(), arrays[1].get(i).toString());
+				russianWordsMap.put(arrays[1].get(i).toString(), arrays[0].get(i).toString());
+			}
+			System.out.println(englishWordsMap);
+			System.out.println(russianWordsMap);
 		}
 
 
@@ -612,6 +646,11 @@ public class MyActivity extends Activity
 					ec_list.addAll(arrays[0]);
 					rc_list.addAll(arrays[1]);
 
+					for (int i = 0; i < arrays[0].size(); i++) {
+						englishWordsMap.put(arrays[0].get(i).toString(), arrays[1].get(i).toString());
+						russianWordsMap.put(arrays[1].get(i).toString(), arrays[0].get(i).toString());
+					}
+
 					break;
 				default:
 					//Toast.makeText(getApplicationContext(), "Somethin' dun borkd, yo!", Toast.LENGTH_LONG).show();
@@ -669,63 +708,18 @@ public class MyActivity extends Activity
 		String second;
 		int compared;
 
-		// Maybe change this to quicksort or bucketsort
-		if(buttonId == 1 || buttonId == 3)
-		{
-			while (runAgain == true)  // I don't like Do-While loops.
-			{
-				i = 0;
-				runAgain = false;
-
-				while (i < (size - 1))
-				{
-					first = ec_list.get(i);
-					second = ec_list.get(i + 1);
-
-					compared = first.compareToIgnoreCase(second);
-
-					if (compared > 0)
-					{
-						Collections.swap(ec_list, i, i + 1);
-						Collections.swap(rc_list, i, i + 1);
-						runAgain = true;
-					}
-					i++;
-				}
-			}
+		if(buttonId == 1) {
+			wordsMap.putAll(englishWordsMap);
+		} else if(buttonId == 3) {
+			wordsMap.putAll(new TreeMap <String, String> (englishWordsMap.descendingMap()));
+			//wordsMap = wordsMap.descendingMap();
+		} else if(buttonId == 2) {
+			wordsMap.putAll(russianWordsMap);
+		} else if(buttonId == 4) {
+			wordsMap.putAll(russianWordsMap.descendingMap());
 		}
-		else
-		{
-			while (runAgain == true)  // I don't like Do-While loops.
-			{
-				i = 0;
-				runAgain = false;
 
-				while (i < (size - 1))
-				{
-					first = rc_list.get(i);
-					second = rc_list.get(i + 1);
-
-					compared = first.compareToIgnoreCase(second);
-
-					if (compared > 0)
-					{
-						Collections.swap(ec_list, i, i + 1);
-						Collections.swap(rc_list, i, i + 1);
-						runAgain = true;
-					}
-					i++;
-				}
-			}
-		}
-		/*for (String temp : ec_list)
-		{
-			System.out.println(temp);
-		}*/
-
-		// Make this depend on runAgain or something
-		//return 1;
-		// Not sure what this is for anymore, maybe it can be deprectaed.
+		keys = wordsMap.keySet().toArray();
 	}
 
 
