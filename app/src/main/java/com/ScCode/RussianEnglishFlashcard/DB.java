@@ -6,11 +6,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static android.R.attr.id;
@@ -90,7 +88,6 @@ public class DB extends SQLiteOpenHelper {
 		print("did we get this far");
     }
 
-	// TODO: For some reason this shit is not working anymore
     public void copyDatabaseFromAssets() {
         print("copyDatabaseFromAssets");
         try {
