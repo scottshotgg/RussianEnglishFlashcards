@@ -57,6 +57,10 @@ public class DB extends SQLiteOpenHelper {
 
     }
 
+	public void deleteDatabase() {
+		context.deleteDatabase(DB_NAME);
+	}
+
     public void createDatabase() {
         // TODO find why this shit is making several successful calls and printouts
         SQLiteDatabase checkdb = null;
@@ -128,6 +132,7 @@ public class DB extends SQLiteOpenHelper {
 		ArrayList<String> english = new ArrayList<String>();
 		ArrayList<String> russian = new ArrayList<String>();
 
+		// TODO: Catch this error when it crashes and then delete the database and recreate it and then try the query again
 		Cursor res = db.rawQuery("select * from main where chapter = ?", new String[]{Integer.toString(chapter)});
 
 		res.moveToFirst();

@@ -94,6 +94,7 @@ public class MyActivity extends Activity
 		}
 
 		db = new DB(this);
+		//db.deleteDatabase();
 		db.createDatabase();
 
         makeLanguageArrays(null, chaptersArrayList);
