@@ -265,6 +265,7 @@ public class MyActivity extends Activity
 
     public void ifCardClicked(View view)
     {
+		// TODO: Figure out why this is making the other card flip when you block/unblock the card area
 //		int size = ec_list.size();
 //		int scaledSize = size - 1;
 //
@@ -342,15 +343,24 @@ public class MyActivity extends Activity
 //				}
 //			}
 //		}
+		// TODO: Still need to add the checking for the words in here and what about if they don't want to see one of the cards?
+		if(buttonId == 1 || buttonId == 3) {
+			english_textView = (TextView) findViewById(R.id.english_textView);
+			english_textView.setText(keys[cardClickedCount].toString());
 
-		english_textView = (TextView) findViewById(R.id.english_textView);
-		english_textView.setText(keys[cardClickedCount].toString());
+			russian_textView = (TextView) findViewById(R.id.russian_textView);
+			russian_textView.setText(wordsMap.get(keys[cardClickedCount]));
 
-		russian_textView = (TextView) findViewById(R.id.russian_textView);
-		russian_textView.setText(wordsMap.get(keys[cardClickedCount]));
+			cardClickedCount++;
+		} else if(buttonId == 2 || buttonId == 4) {
+			english_textView = (TextView) findViewById(R.id.english_textView);
+			english_textView.setText(wordsMap.get(keys[cardClickedCount]));
 
-		cardClickedCount++;
+			russian_textView = (TextView) findViewById(R.id.russian_textView);
+			russian_textView.setText(keys[cardClickedCount].toString());
 
+			cardClickedCount++;
+		}
     }
 
     public void makeLanguageArrays(View view, ArrayList<Integer> chapterArrayList)
