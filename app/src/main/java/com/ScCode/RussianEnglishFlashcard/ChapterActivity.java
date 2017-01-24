@@ -21,7 +21,6 @@ import java.util.Random;
 import static android.R.id.checkbox;
 
 
-// TODO This entire class needs to be reworked to use the chapters.db database which is more appropriate and more efficient
 public class ChapterActivity extends Activity
 {
 	ArrayList<Integer> chaptersArrayList = new ArrayList<Integer>();

@@ -1,7 +1,6 @@
 package com.ScCode.RussianEnglishFlashcard;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
@@ -20,11 +19,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
+// TODO: Modify the entire class and make English and Russian objects that extract all the information based on the buttonId in setVars
+
+// Not going to use a full class abstraction for now
+/*class Language {
+
+	public TextView textView;
+	public
+
+}*/
 
 public class MyActivity extends Activity
 {
@@ -40,8 +48,14 @@ public class MyActivity extends Activity
 	private CountDownTimer timer;
 	private long startTime;
 	private final long interval = 1000;
+
 	TextView english_textView;
 	TextView russian_textView;
+
+	// Used for abstracting the textViews; direct language textViews are kept for visibility and readability of the code
+	TextView primary_textView;
+	TextView secondary_textView;
+
 	boolean hasCountedDown;
 	int cardClickedCount = 0;
 	boolean hasEnglishPressed = false;
@@ -52,19 +66,25 @@ public class MyActivity extends Activity
 	String russianCustomFiles[];
 	int length = 0;
 	DB db = null;
+	int whichLanguage = 0;
 
 	// Compare by key
-	Comparator<String> keyCompare = new Comparator<String>() {
+	Comparator<String> ascendingSort = new Comparator<String>() {
 		@Override
-		public int compare(String o1, String o2) {
-			return o1.toLowerCase().compareTo(o2.toLowerCase());
+		public int compare(String word1, String word2) {
+			return word1.compareToIgnoreCase(word2);
 		}
 	};
 
-	TreeMap<String, String> englishWordsMap = new TreeMap<String, String>(keyCompare);
-	TreeMap<String, String> russianWordsMap = new TreeMap<String, String>(keyCompare);
+	Comparator<String> descendingSort = new Comparator<String>() {
+		@Override
+		public int compare(String word1, String word2) {
+			return word2.compareToIgnoreCase(word1);
+		}
+	};
 
-	TreeMap<String, String> wordsMap = new TreeMap<String, String>();
+	// This might have to move
+	TreeMap<String, String> wordsMap;
 
 
 	ArrayList<Integer> chaptersArrayList = new ArrayList<Integer>();
@@ -74,18 +94,65 @@ public class MyActivity extends Activity
 
 	Object[] keys;
 
+	public void setVars(int buttonId) {
+		switch(buttonId) {
+			case 1:
+				wordsMap = new TreeMap<String, String>(ascendingSort);
+				primary_textView = english_textView;
+				secondary_textView = russian_textView;
+				break;
+
+			case 2:
+				wordsMap = new TreeMap<String, String>(ascendingSort);
+				primary_textView = russian_textView;
+				secondary_textView = english_textView;
+				whichLanguage = 1;
+				break;
+
+			case 3:
+				wordsMap = new TreeMap<String, String>(descendingSort);
+				primary_textView = english_textView;
+				secondary_textView = russian_textView;
+				break;
+
+			case 4:
+				wordsMap = new TreeMap<String, String>(descendingSort);
+				primary_textView = russian_textView;
+				secondary_textView = english_textView;
+				whichLanguage = 1;
+				break;
+
+			// TODO: Fix these next two ones to do their stuff while in here
+			case 5:
+				// This don't do anything yet
+				break;
+
+			case 6:
+				// This don't do anything yet
+				break;
+		}
+
+		System.out.println(whichLanguage);
+	}
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
 
         Bundle extras = getIntent().getExtras();
-		buttonId = extras.getInt("buttonId");
 		time = extras.getInt("time");
 		startTime = time * 1000;
 		words = extras.getInt("words");
 		tracking = extras.getBoolean("tracking");
 		chaptersArrayList = extras.getIntegerArrayList("chaptersArrayList");
+
+		setContentView(R.layout.activity_my);
+
+		english_textView = (TextView) findViewById(R.id.english_textView);
+		russian_textView = (TextView) findViewById(R.id.russian_textView);
+
+		setVars(extras.getInt("buttonId"));
 
 		if(chaptersArrayList.get(0) == 0)
 		{
@@ -127,8 +194,6 @@ public class MyActivity extends Activity
 			sortLanguageArray();
 		}
 
-		setContentView(R.layout.activity_my);
-
 		if(time != 0)
 		{
 			timer = new CountDownTimer(startTime, interval)
@@ -139,9 +204,6 @@ public class MyActivity extends Activity
 				@Override
 				public void onFinish()
 				{
-					english_textView = (TextView) findViewById(R.id.english_textView);
-					russian_textView = (TextView) findViewById(R.id.russian_textView);
-
 					hasCountedDown = true;
 
 					onBackPressed();
@@ -196,7 +258,6 @@ public class MyActivity extends Activity
 
 	public void onClickEnglishButton(View view)
 	{
-		english_textView = (TextView) findViewById(R.id.english_textView);
 		LinearLayout englishLLayout = (LinearLayout) findViewById(R.id.englishLLayout);
 
 		if(hasEnglishPressed == false)
@@ -266,102 +327,15 @@ public class MyActivity extends Activity
     public void ifCardClicked(View view)
     {
 		// TODO: Figure out why this is making the other card flip when you block/unblock the card area
-//		int size = ec_list.size();
-//		int scaledSize = size - 1;
-//
-//		if(hasCountedDown == true)
-//		{
-//			english_textView.setClickable(false);
-//			russian_textView.setClickable(false);
-//			english_textView.setFocusable(false);
-//			russian_textView.setFocusable(false);
-//		}
-//		else
-//		{
-//			// combine these next things
-//			if(buttonId == 1 || buttonId == 2)
-//			{
-//				if(hasEnglishPressed == false)
-//				{
-//					english_textView = (TextView) findViewById(R.id.english_textView);
-//					english_textView.setText(ec_list.get(cardClickedCount));
-//				}
-//
-//				if(hasRussianPressed == false)
-//				{
-//					russian_textView = (TextView) findViewById(R.id.russian_textView);
-//					russian_textView.setText(rc_list.get(cardClickedCount));
-//				}
-//			}
-//			else if(buttonId == 3 || buttonId == 4)
-//			{
-//				if(hasEnglishPressed == false)
-//				{
-//					english_textView = (TextView) findViewById(R.id.english_textView);
-//					english_textView.setText(ec_list.get(scaledSize - cardClickedCount));
-//				}
-//
-//				if(hasRussianPressed == false)
-//				{
-//					russian_textView = (TextView) findViewById(R.id.russian_textView);
-//					russian_textView.setText(rc_list.get(scaledSize - cardClickedCount));
-//				}
-//			}
-//			else if(buttonId == 5)
-//			{
-//				randNum = rand.nextInt(chaptersAmount) + 1;
-//
-//				if(hasEnglishPressed == false)
-//				{
-//					english_textView = (TextView) findViewById(R.id.english_textView);
-//					english_textView.setText(ec_list.get(randNum - 1));
-//				}
-//
-//				if(hasRussianPressed == false)
-//				{
-//					russian_textView = (TextView) findViewById(R.id.russian_textView);
-//					russian_textView.setText(rc_list.get(randNum - 1));
-//				}
-//			}
-//
-//			cardClickedCount++;
-//
-//			if(cardClickedCount == size)
-//			{
-//				cardClickedCount = 0;
-//			}
-//
-//			if (words != 0)
-//			{
-//				wordsCount++;
-//				if (wordsCount == words)
-//				{
-//					onBackPressed();
-//					// This is temporary, need to make something better that
-//					// takes into account tracking and kicks out to another screen.
-//					// kick out to end_Activity
-//				}
-//			}
-//		}
 		// TODO: Still need to add the checking for the words in here and what about if they don't want to see one of the cards?
-		if(buttonId == 1 || buttonId == 3) {
-			english_textView = (TextView) findViewById(R.id.english_textView);
-			english_textView.setText(keys[cardClickedCount].toString());
 
-			russian_textView = (TextView) findViewById(R.id.russian_textView);
-			russian_textView.setText(wordsMap.get(keys[cardClickedCount]));
+		// TODO: Make it either loop around or kick out from a user setting
 
-			cardClickedCount++;
-		} else if(buttonId == 2 || buttonId == 4) {
-			english_textView = (TextView) findViewById(R.id.english_textView);
-			english_textView.setText(wordsMap.get(keys[cardClickedCount]));
+		primary_textView.setText(keys[cardClickedCount].toString());
+		secondary_textView.setText(wordsMap.get(keys[cardClickedCount]));
 
-			russian_textView = (TextView) findViewById(R.id.russian_textView);
-			russian_textView.setText(keys[cardClickedCount].toString());
-
-			cardClickedCount++;
-		}
-    }
+		cardClickedCount++;
+	}
 
     public void makeLanguageArrays(View view, ArrayList<Integer> chapterArrayList)
     {
@@ -371,8 +345,7 @@ public class MyActivity extends Activity
 		InputStream english_InputStream;
 		String russian_word;
 		String english_word;
-		english_textView = (TextView) findViewById(R.id.english_textView);
-		russian_textView = (TextView) findViewById(R.id.russian_textView);
+
 		boolean multipleCustomFiles = false;
 
 
@@ -386,13 +359,10 @@ public class MyActivity extends Activity
 			rc_list.addAll(arrays[1]);
 
 			for (int i = 0; i < arrays[0].size(); i++) {
-				englishWordsMap.put(arrays[0].get(i).toString(), arrays[1].get(i).toString());
-				russianWordsMap.put(arrays[1].get(i).toString(), arrays[0].get(i).toString());
+				wordsMap.put(arrays[0 + whichLanguage].get(i).toString(), arrays[1 - whichLanguage].get(i).toString());
 			}
-			System.out.println(englishWordsMap);
-			System.out.println(russianWordsMap);
-		}
 
+		}
 
         for (Integer chapter: chapterArrayList)
         {
@@ -657,8 +627,7 @@ public class MyActivity extends Activity
 					rc_list.addAll(arrays[1]);
 
 					for (int i = 0; i < arrays[0].size(); i++) {
-						englishWordsMap.put(arrays[0].get(i).toString(), arrays[1].get(i).toString());
-						russianWordsMap.put(arrays[1].get(i).toString(), arrays[0].get(i).toString());
+						wordsMap.put(arrays[0 + whichLanguage].get(i).toString(), arrays[1 - whichLanguage].get(i).toString());
 					}
 
 					break;
@@ -718,18 +687,15 @@ public class MyActivity extends Activity
 		String second;
 		int compared;
 
-		if(buttonId == 1) {
-			wordsMap.putAll(englishWordsMap);
-		} else if(buttonId == 3) {
-			wordsMap.putAll(new TreeMap <String, String> (englishWordsMap.descendingMap()));
-			//wordsMap = wordsMap.descendingMap();
-		} else if(buttonId == 2) {
-			wordsMap.putAll(russianWordsMap);
-		} else if(buttonId == 4) {
-			wordsMap.putAll(russianWordsMap.descendingMap());
-		}
-
+//		if(buttonId == 1 || buttonId == 3) {
+//			wordsMap.putAll(englishWordsMap);
+//		} else if(buttonId == 2 || buttonId == 4) {
+//			wordsMap.putAll(russianWordsMap);
+//		}
 		keys = wordsMap.keySet().toArray();
+		System.out.println(Arrays.asList(keys));
+		wordsCount = keys.length - 1;
+
 	}
 
 
@@ -741,8 +707,6 @@ public class MyActivity extends Activity
 		InputStream english_InputStream;
 		String russian_word;
 		String english_word;
-		english_textView = (TextView) findViewById(R.id.english_textView);
-		russian_textView = (TextView) findViewById(R.id.russian_textView);
 
 		for(int i = 0; i < englishCustomFiles.length; i++)
 		{
