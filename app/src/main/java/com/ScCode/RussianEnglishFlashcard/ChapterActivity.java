@@ -25,7 +25,6 @@ public class ChapterActivity extends Activity
 {
 	ArrayList<Integer> chaptersArrayList = new ArrayList<Integer>();
 
-	// TODO Use an oncick for these things so that we don't have to do any processing for them
     CheckBox allchapters_checkbox;
     CheckBox random_checkbox;
     CheckBox custom_checkbox;
@@ -157,14 +156,15 @@ public class ChapterActivity extends Activity
 		// This will need fixing, can produce duplicate chapter amounts.
         if(allchapters_checkbox.isChecked()) // Need to handle both the rando mand all chapters checked at the same time
         {
-			/*for(int i = 1; i < 17; i++)
+			for(int i = 1; i < 17; i++)
 			{
 				chaptersArrayList.add(i);
-			}*/
+			}
+			chaptersArrayList.add(500);
 
-			Toast.makeText(getApplicationContext(), "Sorry, this feature is currently not available.\nNot all chapters have been implemented yet.\nOnly chapters 1 - 5 are available, please select from one of those.", Toast.LENGTH_LONG).show();
+			//Toast.makeText(getApplicationContext(), "Sorry, this feature is currently not available.\nNot all chapters have been implemented yet.\nOnly chapters 1 - 5 are available, please select from one of those.", Toast.LENGTH_LONG).show();
 
-			allchapters_checkbox.setChecked(false); // Maybe I'll have to fix the Toast spam messages
+			//allchapters_checkbox.setChecked(false); // Maybe I'll have to fix the Toast spam messages
         }
         else if(random_checkbox.isChecked())
         {
@@ -207,7 +207,7 @@ public class ChapterActivity extends Activity
 
 					// For multiple custom files, "increment" this value everytime and add those in there
 					// under the name RCF1, ECF1, RCF2, ECF2... etc etc
-					// We need to splice them and analyse the strings.
+					// We lneed to splice them and analyse the strings.
 					chaptersArrayList.add(-1);
 				}
 			}

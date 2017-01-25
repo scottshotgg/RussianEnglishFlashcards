@@ -44,7 +44,6 @@ public class DB extends SQLiteOpenHelper {
                // + "AUTOINCREMENT, name TEXT NOT NULL, ext TEXT NOT NULL, "
               //  + "mob TEXT NOT NULL, age INTEGER NOT NULL DEFAULT '0')");
         //SQLiteDatabase checkdb = null;
-		//context.deleteDatabase(DB_NAME);
         //createDatabase();
 		//db.close();
         //copyDatabaseFromAssets();
